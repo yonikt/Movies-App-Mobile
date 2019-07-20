@@ -26,6 +26,3 @@ btn.addEventListener('mouseover', () => {
 	body.classList.remove('show')
 })
 
-
-
-              

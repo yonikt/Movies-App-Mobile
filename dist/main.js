@@ -2,13 +2,6 @@ const renderer = new Renderer
 const moviesManager = new MoviesManager
 
 
-// async function loadPage() {
-//  await moviesManager.getDataFromDB()
-//   for(let i=0; i<moviesManager.movieData.length; i++){
-//   renderer.render(moviesManager.movieData[i])
-//   }
-// }
-
 
 const getData = async function () {
   const data = await moviesManager.getMoviesData()
@@ -30,12 +23,24 @@ const deleteMovie = async function () {
   $(this).prop('disabled', true)
 }
 
+
+
+const loadData = async function () {
+  location.reload()
+ await moviesManager.getDataFromDB()
+  for(let i=0; i<moviesManager.movieData.length; i++){
+  renderer.render(moviesManager.movieData[i])
+  }
+
+}
+
+
 $('.button-main').one('click', getData)
+$('.second-button').one('click', loadData)
 $('body').on('click', '.save-movie', saveMovie)
 $('body').on('click', '.delete-movie', deleteMovie)
 
 
-// loadPage()
 
 
 

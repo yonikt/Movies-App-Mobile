@@ -1,5 +1,5 @@
 const express = require('express')
-const request = require('request')
+const request = require('request-promise')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -33,6 +33,19 @@ app.get('/movies/:id', function (req, res) {
 })
 
 
+app.get('/catalog/:name', function (req, res) {
+    let name = req.params.name
+    name = encodeURIComponent(name)
+   
+    request.get(`https://api.themoviedb.org/3/search/movie?api_key=cd322f159b1374e396d35c26a3ba3128&language=he&query=${name}page=1&include_adult=false`, function (error, response) {
+        let resp = JSON.parse(response.body)
+        // resp = resp.results.map(i => ({ name: i.title, vote: i.vote_average, overview: i.overview, release: i.release_date, picture: i.poster_path }))
+        res.send(resp)
+
+    })
+})
+
+
 app.post('/save', (req, res) => {
     const m2 = new moviesModel(req.body)
     m2.save(() => res.json({ success: true }))
@@ -45,6 +58,7 @@ app.delete('/movies/:movieName', function (req, res) {
     })
     res.end()
 })
+
 
 
 

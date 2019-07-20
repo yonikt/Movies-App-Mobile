@@ -9,6 +9,7 @@ class MoviesManager {
       
             for (let i = 0; i < res.length; i++) {
                 this.movieData.push(res[i])
+                console.log(this.movieData)
             }
        
        
