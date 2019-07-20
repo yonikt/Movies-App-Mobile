@@ -4,23 +4,22 @@ class MoviesManager {
     }
 
 
-    // async getDataFromDB() {
-    //     let self = this.cityData
-    //     let res = await $.get('/cities')
-    //     if (res) {
-    //         for (let i=0; i<res.length; i++) {
-    //             self.push(res[i])
-    //         }
-    //     }
-    //     return
-    // }
+    async getDataFromDB() {
+        let res = await $.get('/movies')
+      
+            for (let i = 0; i < res.length; i++) {
+                this.movieData.push(res[i])
+            }
+       
+       
+    }
+
 
     async getMoviesData() {
         let x = await $.get(`/movies`)
         this.movieData.push(x)
         console.log(this.movieData[0])
         return this.movieData[0]
-     
     }
 
 
@@ -28,7 +27,7 @@ class MoviesManager {
 
     async saveMovie(movieName) {
         let data = await this.movieData[0]
-        data=data.filter(i => i.name === movieName)
+        data = data.filter(i => i.name === movieName)
 
         await $.post('/save', data[0])
     }
@@ -43,10 +42,10 @@ class MoviesManager {
             }
         })
         let data = await this.movieData[0]
-        data=data.filter(i => i.name != movieName)
+        data = data.filter(i => i.name != movieName)
     }
 
-   
+
 }
 
 
