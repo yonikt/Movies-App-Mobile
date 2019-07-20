@@ -22,7 +22,7 @@ const btn = document.querySelectorAll('.button')[0];
 btn.addEventListener('mouseenter', () => {
 	body.classList.add('show')
 })
-btn.addEventListener('mouseleave', () => {
+btn.addEventListener('mouseover', () => {
 	body.classList.remove('show')
 })
 
