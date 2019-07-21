@@ -3,7 +3,8 @@ const moviesManager = new MoviesManager
 
 
 const loadSavedMovies = async function () {
- const data = await moviesManager.getDataFromDB()
+  $("#containers").empty()
+ const data = await moviesManager.getSavedMovies()
     renderer.render(data)
 }
 
