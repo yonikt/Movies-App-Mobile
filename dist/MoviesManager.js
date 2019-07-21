@@ -7,9 +7,9 @@ class MoviesManager {
 
     async getDataFromDB() {
         let res = await $.get('/save')
-        
-            this.savedMovies.push(res[0])
-        
+        for (let i = 0; i < res.length; i++) {
+            this.savedMovies.push(res[i])
+        }
         console.log(this.savedMovies)
         return this.savedMovies
     }
