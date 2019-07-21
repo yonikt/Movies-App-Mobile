@@ -5,14 +5,14 @@ const moviesManager = new MoviesManager
 const loadSavedMovies = async function () {
   $("#containers").empty()
  const data = await moviesManager.getSavedMovies()
-    renderer.render(data)
+    renderer.renderSaved(data)
 }
 
 
 const getData = async function () {
   $("#containers").empty()
   const data = await moviesManager.getMoviesData()
-  renderer.render(data)
+  renderer.renderAll(data)
 
 }
 
