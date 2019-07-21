@@ -10,6 +10,7 @@ const loadSavedMovies = async function () {
 
 
 const getData = async function () {
+  $("#containers").empty()
   const data = await moviesManager.getMoviesData()
   renderer.render(data)
 
@@ -26,7 +27,6 @@ const deleteMovie = async function () {
   const save = $(this).closest('.card').find('.movie-name').text()
   await moviesManager.removeMovie(save)
   $(this).closest('.card').remove()
-  $(this).prop('disabled', true)
 }
 
 
