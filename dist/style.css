@@ -8,6 +8,7 @@ body {
   padding: 0;
   font-family: 'PT Sans', sans-serif;
   -webkit-user-select: none; 
+
  
 }
 
@@ -98,6 +99,7 @@ body {
   transition: 0.5s;
 }
 
+
 .card:hover .poster img {
   filter: blur(2px);
   transform: translateY(-30px);
@@ -168,8 +170,13 @@ body {
   background: #f70661;
 }
 
-.info {
-  color: #fff;
+.movie-name{
+  direction: rtl;
+}
+
+.info{
+  direction: rtl;
+  color: white;
 }
 
 .info p {
