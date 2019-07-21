@@ -2,6 +2,11 @@ const renderer = new Renderer
 const moviesManager = new MoviesManager
 
 
+const loadSavedMovies = async function () {
+ const data = await moviesManager.getDataFromDB()
+    renderer.render(data)
+}
+
 
 const getData = async function () {
   const data = await moviesManager.getMoviesData()
@@ -24,19 +29,8 @@ const deleteMovie = async function () {
 }
 
 
-
-const loadData = async function () {
-  location.reload()
- await moviesManager.getDataFromDB()
-  for(let i=0; i<moviesManager.movieData.length; i++){
-  renderer.render(moviesManager.movieData[i])
-  }
-
-}
-
-
 $('.button-main').one('click', getData)
-$('.second-button').one('click', loadData)
+$('.second-button').one('click', loadSavedMovies)
 $('body').on('click', '.save-movie', saveMovie)
 $('body').on('click', '.delete-movie', deleteMovie)
 

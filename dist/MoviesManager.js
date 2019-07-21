@@ -1,18 +1,17 @@
 class MoviesManager {
     constructor(cityData) {
         this.movieData = []
+        this.savedMovies = []
     }
 
 
     async getDataFromDB() {
-        let res = await $.get('/movies')
-      
-            for (let i = 0; i < res.length; i++) {
-                this.movieData.push(res[i])
-                console.log(this.movieData)
-            }
-       
-       
+        let res = await $.get('/save')
+        for (let i = 0; i < res.length; i++) {
+            this.savedMovies.push(res[i])
+        }
+        console.log(this.savedMovies)
+        return this.savedMovies
     }
 
 
@@ -42,11 +41,11 @@ class MoviesManager {
                 console.log("deleted")
             }
         })
-        let data = await this.movieData[0]
-        data = data.filter(i => i.name != movieName)
+        let data1 = await this.movieData[0]
+        data1 = data1.filter(i => i.name != movieName)
+        let data2 = await this.savedMovies
+        data2 = data2.filter(i => i.name != movieName)
     }
 
 
 }
-
-

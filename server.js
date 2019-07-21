@@ -22,28 +22,37 @@ app.get('/movies', function (req, res) {
     })
 })
 
-app.get('/movies/:id', function (req, res) {
-    let id = req.params.id
-    request.get(`https://api.themoviedb.org/3/movie/${id}?api_key=cd322f159b1374e396d35c26a3ba3128&language=en-US`, function (error, response) {
-
-        let resp = JSON.parse(response.body)
-        resp = { genres: resp.genres, runtime: resp.runtime }
-        res.send(resp)
+app.get('/save', function (req, res) {
+    moviesModel.find({}, function (err, data) {
+        res.send(data)
     })
 })
 
 
-app.get('/catalog/:name', function (req, res) {
-    let name = req.params.name
-    name = encodeURIComponent(name)
+//FUTURE UPDATES
+
+// app.get('/movies/:id', function (req, res) {
+//     let id = req.params.id
+//     request.get(`https://api.themoviedb.org/3/movie/${id}?api_key=cd322f159b1374e396d35c26a3ba3128&language=en-US`, function (error, response) {
+
+//         let resp = JSON.parse(response.body)
+//         resp = { genres: resp.genres, runtime: resp.runtime }
+//         res.send(resp)
+//     })
+// })
+
+
+// app.get('/catalog/:name', function (req, res) {
+//     let name = req.params.name
+//     name = encodeURIComponent(name)
    
-    request.get(`https://api.themoviedb.org/3/search/movie?api_key=cd322f159b1374e396d35c26a3ba3128&language=he&query=${name}page=1&include_adult=false`, function (error, response) {
-        let resp = JSON.parse(response.body)
-        // resp = resp.results.map(i => ({ name: i.title, vote: i.vote_average, overview: i.overview, release: i.release_date, picture: i.poster_path }))
-        res.send(resp)
+//     request.get(`https://api.themoviedb.org/3/search/movie?api_key=cd322f159b1374e396d35c26a3ba3128&language=he&query=${name}page=1&include_adult=false`, function (error, response) {
+//         let resp = JSON.parse(response.body)
+//         // resp = resp.results.map(i => ({ name: i.title, vote: i.vote_average, overview: i.overview, release: i.release_date, picture: i.poster_path }))
+//         res.send(resp)
 
-    })
-})
+//     })
+// })
 
 
 app.post('/save', (req, res) => {
